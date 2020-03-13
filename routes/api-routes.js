@@ -7,7 +7,7 @@ module.exports = function (app) {
                 res.json(results);
             })
             .catch(err => {
-                res.json(err)
+                res.json(err);
             })
     })
 
@@ -15,17 +15,23 @@ module.exports = function (app) {
 
     })
 
-    app.post("/api/workouts", (req, res) => {
-
+    app.post("/api/workouts", ({body}, res) => {
+        db.Workout.create({body})
+            .then( results => {
+                res.json(results);
+            })
+            .catch(err => {
+                res.json(err);
+            })
     })
 
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
             .then(results => {
-                res.json(results)
+                res.json(results);
             })
             .catch(err => {
-                res.json(err)
+                res.json(err);
             })
     })
 }
